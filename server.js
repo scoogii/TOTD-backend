@@ -1,9 +1,12 @@
+import Database from "better-sqlite3";
+
 const express = require("express");
 const app = express();
 const port = 3000;
 
 //////////// DB ////////////
-const db = require("./db");
+const db = new Database("dates.db");
+db.pragma("journal_mode = WAL");
 
 //////////// ROUTES ////////////
 app.get("/", (req, res) => {
@@ -11,9 +14,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/get_dates", (req, res) => {
-  db.all("SELECT * FROM dates", (error, rows) => {
-    console.log(rows);
-  });
+  const row = db.prepare("SELECT * FROM dates");
+  console.log(row);
 });
 
 app.listen(port, () => {

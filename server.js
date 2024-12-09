@@ -2,11 +2,20 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-// Route to get marked dates from sqlite3 db
+//////////// DB ////////////
+const db = require("./db");
+
+//////////// ROUTES ////////////
+app.get("/", (req, res) => {
+  res.json({ message: "OK" });
+});
+
 app.get("/get_dates", (req, res) => {
-  res.send("Giving you dates");
+  db.all("SELECT * FROM dates", (error, rows) => {
+    console.log(rows);
+  });
 });
 
 app.listen(port, () => {
-  console.log("Test");
+  console.log(`Server running at http://localhost:${port}`);
 });

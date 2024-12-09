@@ -2,7 +2,7 @@ const db = require("./db");
 
 const getDays = () => {
   return new Promise((resolve, reject) => {
-    db.all("SELECT * FROM dates", (err, rows) => {
+    db.all("SELECT * FROM days", (err, rows) => {
       if (err) {
         reject(err);
       } else {
@@ -14,7 +14,7 @@ const getDays = () => {
 
 const getDayByDate = (date) => {
   return new Promise((resolve, reject) => {
-    db.all(`SELECT * FROM dates where date = '${date}'`, (err, rows) => {
+    db.all(`SELECT * FROM days where date = '${date}'`, (err, rows) => {
       if (err) {
         reject(err);
       } else {
@@ -25,10 +25,9 @@ const getDayByDate = (date) => {
 };
 
 const addDay = (date, thought) => {
-  console.log(`${date} ${thought}`);
   return new Promise((resolve, reject) => {
     db.run(
-      "INSERT INTO dates (date, thought) VALUES (?, ?)",
+      "INSERT INTO days (date, thought) VALUES (?, ?)",
       date,
       thought,
       (err) => {

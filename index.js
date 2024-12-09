@@ -7,6 +7,10 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.get("/", async (_, res) => {
+  res.send({ message: "OK" });
+});
+
 //////////// GET ALL DAYS ////////////
 app.get("/get_days", async (_, res) => {
   const allDays = await days.getDays();

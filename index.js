@@ -12,22 +12,44 @@ app.get("/", async (_, res) => {
 });
 
 //////////// GET ALL DAYS ////////////
-app.get("/get_days", async (_, res) => {
+app.get("/days", async (_, res) => {
   const allDays = await days.getDays();
+
   res.send(allDays);
 });
 
 //////////// GET DAY BY DATE ////////////
-app.get("/:date", async (req, res) => {
-  const day = await days.getDayByDate(req.params.date);
+app.get("/day/:date", async (req, res) => {
+  const date = req.params.date;
+  const day = await days.getDayByDate(date);
+
   res.send(day);
 });
 
 //////////// ADD DAY ////////////
-app.post("/add_day", async (req, res) => {
+app.post("/day", async (req, res) => {
   const date = req.body.date;
   const thought = req.body.thought;
   await days.addDay(date, thought);
+
+  res.send({ message: "Success" });
+});
+
+//////////// UPDATE DAY ////////////
+app.put("/day/:id", async (req, res) => {
+  const id = req.params.id;
+  const date = req.body.date;
+  const thought = req.body.thought;
+  await days.updateDay(id, date, thought);
+
+  res.send({ message: "Success" });
+});
+
+//////////// REMOVE DAY ////////////
+app.delete("/day/:id", async (req, res) => {
+  const id = req.params.id;
+  await days.removeDay(id);
+
   res.send({ message: "Success" });
 });
 

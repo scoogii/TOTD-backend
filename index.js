@@ -14,10 +14,10 @@ app.get("/", async (_, res) => {
 });
 
 //////////// GET ALL DAYS ////////////
-app.get("/days", async (_, res) => {
-  const allDays = await days.getDays();
+app.get("/dates", async (_, res) => {
+  const allDates = await days.getDates();
 
-  res.send(allDays);
+  res.send(allDates);
 });
 
 //////////// GET DAY BY DATE ////////////

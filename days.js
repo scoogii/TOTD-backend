@@ -1,9 +1,9 @@
 const db = require("./db");
 
-//////////// GET ALL DAYS ////////////
-const getDays = () => {
+//////////// GET ALL DATES ////////////
+const getDates = () => {
   return new Promise((resolve, reject) => {
-    db.all("SELECT * FROM days", (err, rows) => {
+    db.all("SELECT date FROM days", (err, rows) => {
       if (err) {
         reject(err);
       } else {
@@ -74,7 +74,7 @@ const removeDay = (id) => {
 };
 
 module.exports = {
-  getDays,
+  getDates,
   getDayByDate,
   addDay,
   updateDay,

@@ -56,5 +56,5 @@ app.delete("/day/:id", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("Server listening at http://localhost:3000");
+  console.log("Server listening at port 3000");
 });
